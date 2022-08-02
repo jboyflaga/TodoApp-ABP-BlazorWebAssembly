@@ -50,6 +50,9 @@ public class TodoAppDbContext :
     public DbSet<Tenant> Tenants { get; set; }
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
 
+    // Todo
+    public DbSet<TodoItem> TodoItems { get; set; }
+
     #endregion
 
     public TodoAppDbContext(DbContextOptions<TodoAppDbContext> options)
@@ -74,6 +77,10 @@ public class TodoAppDbContext :
         builder.ConfigureTenantManagement();
 
         /* Configure your own tables/entities inside here */
+        builder.Entity<TodoItem>(b =>
+        {
+            b.ToTable("TodoItems");
+        });
 
         //builder.Entity<YourEntity>(b =>
         //{
